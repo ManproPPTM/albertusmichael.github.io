@@ -1579,16 +1579,16 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     var self     = this
     var $targets = this.$body
       .find(this.selector)
-      .map(function () {
-        var $el   = $(this)
-        var href  = $el.data('target') || $el.attr('href')
-        var $href = /^#./.test(href) && $(href)
-
-        return ($href
-          && $href.length
-          && $href.is(':visible')
-          && [[ $href[offsetMethod]().top + (!$.isWindow(self.$scrollElement.get(0)) && self.$scrollElement.scrollTop()), href ]]) || null
-      })
+//      .map(function () {
+//        var $el   = $(this)
+//        var href  = $el.data('target') || $el.attr('href')
+//        var $href = /^#./.test(href) && $(href)
+//
+//        return ($href
+//          && $href.length
+//          && $href.is(':visible')
+//          && [[ $href[offsetMethod]().top + (!$.isWindow(self.$scrollElement.get(0)) && self.$scrollElement.scrollTop()), href ]]) || null
+//      })
       .sort(function (a, b) { return a[0] - b[0] })
       .each(function () {
         self.offsets.push(this[0])
