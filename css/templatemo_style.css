@@ -12,6 +12,25 @@ http://www.templatemo.com/tm-401-sprint
   background-color: #f2f6f9;
 }
 
+/*Zefa*/
+tr:nth-child(even){background-color: #f2f2f2}
+
+td{
+  height: 50px;
+  min-width: 40px;
+}
+
+/*div.image1 {
+   width:30px; 
+   height:30px; 
+   background:url("images/plus.png");
+}*/
+
+td img {
+  height: 30px;
+  width:30px;
+}
+
 #cont{
   width: 1350px;
   height: 200px;
