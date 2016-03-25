@@ -20,6 +20,7 @@ td{
   min-width: 40px;
 }
 
+
 /*div.image1 {
    width:30px; 
    height:30px; 
@@ -386,7 +387,8 @@ h6 {
 }
 .main-menu ul li {
   display: inline-block;
-  width: 150px;
+  min-width: 100px;
+  margin-right: 80px;
   text-align: center;
   line-height: 90px;
 }
