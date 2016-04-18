@@ -3,6 +3,9 @@
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<?php 
+    require 'connection.php';
+?>
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
@@ -167,7 +170,16 @@ http://www.templatemo.com/tm-401-sprint
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+<!--PHP HERE!-->
+                <?php
+                $sql='SELECT kode_barang, nama_barang, stok, imgpath FROM (-daftar_barang)';
+                $res=$conn->query($sql);
+                
+                
+                for ($i=0;$i<5;$i++)
+                {
+                echo
+                '<div class="col-md-3 col-sm-6">
                     <div class="product-item">
                         <div class="item-thumb">
                             <span class="note"><img src="images/small_logo.png" alt=""></span>
@@ -182,119 +194,10 @@ http://www.templatemo.com/tm-401-sprint
                         <span>Jumlah Total <em class="price">3</em> Tersedia <em class="price">1</em></span>
                         <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
                     </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product2.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Projector BenQ AE3000 3000 Lumens</h3>
-                        <span>Jumlah Total <em class="price">2</em> Tersedia <em class="price">0</em></span><br>
-                        <span>Tersedia Tanggal : <em class="price">30 JUNI 2016</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product3.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Pengeras Suara Simbadda CST 1800N</h3>
-                        <span>Jumlah Total <em class="price">4</em> Tersedia <em class="price">4</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product4.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Printer HP Laserjet P1020 Hitam/Putih</h3>
-                        <span>Jumlah Total <em class="price">4</em> Tersedia <em class="price">4</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                   <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product5.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Scanner Canon S15 A4/A3</h3>
-                        <span>Jumlah Total <em class="price">1</em> Tersedia <em class="price">1</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product6.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Dekstop PC Bundling HP</h3>
-                        <span>Jumlah Total <em class="price">15</em> Tersedia <em class="price">15</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product7.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Laptop Lenovo G450 Intel Core i5</h3>
-                        <span>Jumlah Total <em class="price">3</em> Tersedia <em class="price">1</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                   <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product8.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Profesional Handycam</h3>
-                        <span>Jumlah Total <em class="price">6</em> Tersedia <em class="price">6</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->
+                </div> <!-- /.col-md-3 -->';
+                }
+                ?>
+<!--PHP STOP HERE!-->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </div> <!-- /#products -->
