@@ -7,6 +7,13 @@ http://www.templatemo.com/tm-401-sprint
 */
 
 /*esta*/
+  #about .container .row p {
+    
+    margin-top: 0px;
+    font-size: 15px;
+    text-align: left;
+    padding-top: 0px;
+  }
 #background{
 
   background-color: #f2f6f9;
