@@ -207,8 +207,10 @@ http://www.templatemo.com/tm-401-sprint
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h1 class="section-title">About</h1>
-                    <h3>test1</h3>
-                    <p>test2</p>
+                    <p> Prosedur Peminjaman :</p>
+                    <p>1. Mengunjungi website PPTPM yang tersedia</p>
+                    <p>2. Memilih barang yang hendak di pinjam serta cek ketersediaan barang tersebut</p>
+                    <p>3. Lalu datang ke kantor PPTPM</p>
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
