@@ -173,13 +173,13 @@ http://www.templatemo.com/tm-401-sprint
                 <?php
                 //<!--PHP HERE!-->
                 $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
-                $resstok=mysql_query($sqlstok) or die(mysql_error());
+                $resstok=$conn->query($sqlstok);
                 
-                if(mysql_num_rows($resstok)>0)
+                if(mysqli_num_rows($resstok)>0)
                 {
-                    for($i=0;$i<mysql_num_rows($resstok);$i++)
+                    for($i=0;$i<mysqli_num_rows($resstok);$i++)
                     {
-                        $rowstok=mysql_fetch_array($resstok);
+                        $rowstok=mysqli_fetch_array($resstok);
                         
                         echo
                             '<div class="col-md-3 col-sm-6">
@@ -201,9 +201,9 @@ http://www.templatemo.com/tm-401-sprint
                         
                         $sqllog="SELECT tgl_kembali FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
                         
-                        $reslog=mysql_query($sqllog) or die(mysql_error());
+                        $reslog=$conn->query($sqllog);
                         
-                        $sisa=$rowstok[2]-mysql_num_rows($reslog);
+                        $sisa=$rowstok[2]-mysqli_num_rows($reslog);
                         
                         echo
                                     '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';
@@ -215,8 +215,8 @@ http://www.templatemo.com/tm-401-sprint
                         else
                         {
                             $sqllog="SELECT MIN(tgl_kembali) FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
-                            $reslog=mysql_query($sqllog) or die(mysql_error());
-                            $rowlog=mysql_fetch_array($reslog);
+                            $reslog=$conn->query($sqllog);
+                            $rowlog=mysqli_fetch_array($reslog);
                             
                             $date=substr($rowlog[0],8,2)." ";
                             switch(substr($rowlog[0],5,2))

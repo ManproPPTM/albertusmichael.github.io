@@ -5,6 +5,6 @@
     $db="u446092311_pptpm";
 
     //Create Connection
-    mysql_connect($server,$usr,$psw);
-    mysql_select_db($db);
+    $conn=new mysqli($server,$usr,$psw);
+    $conn->select_db($db);
 ?>
