@@ -172,29 +172,68 @@ http://www.templatemo.com/tm-401-sprint
             <div class="row">
 <!--PHP HERE!-->
                 <?php
-                $sql='SELECT kode_barang, nama_barang, stok, imgpath FROM (-daftar_barang)';
-                $res=$conn->query($sql);
+                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
+                $resstok=mysql_query($sqlstok) or die(mysql_error());
                 
-                
-                for ($i=0;$i<5;$i++)
+                if(mysql_num_rows($resstok)>0)
                 {
-                echo
-                '<div class="col-md-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="item-thumb">
-                            <span class="note"><img src="images/small_logo.png" alt=""></span>
-                            <div class="overlay">
-                                <div class="overlay-inner">
-                                    <a href="#nogo" class="view-detail">PPTPM</a>
-                                </div>
-                            </div> <!-- /.overlay -->
-                            <img src="images/products/product1.jpg" alt="">
-                        </div> <!-- /.item-thumb -->
-                        <h3>Projector Hitachi DX250 3000 Lumens</h3>
-                        <span>Jumlah Total <em class="price">3</em> Tersedia <em class="price">1</em></span>
-                        <span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>
-                    </div> <!-- /.product-item -->
-                </div> <!-- /.col-md-3 -->';
+                    for($i=0;$i<mysql_num_rows($resstok);$i++)
+                    {
+                        $rowstok=mysql_fetch_array($resstok);
+                        echo
+                            '<div class="col-md-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="item-thumb">
+                                        <span class="note"><img src="images/small_logo.png" alt=""></span>
+                                        <div class="overlay">
+                                            <div class="overlay-inner">
+                                                <a href="#nogo" class="view-detail">PPTPM</a>
+                                            </div>
+                                        </div> <!-- /.overlay -->';
+                        if($rowstok[3]=="") $rowstok[3]="product7.jpg";
+                        echo
+                                        '<img src="images/products/'.$rowstok[3].'" alt="">
+                                    </div> <!-- /.item-thumb -->
+                                    <h3>'.$rowstok[1].'</h3>';
+                        $sqllog="SELECT tgl_kembali FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
+                        $reslog=mysql_query($sqllog) or die(mysql_error());
+                        $sisa=$rowstok[2]-mysql_num_rows($reslog);
+                        echo
+                                    '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';
+                        if($sisa>0)
+                        {
+                            echo    '<span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>';
+                        }
+                        else
+                        {
+                            $sqllog="SELECT MIN(tgl_kembali) FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
+                            $reslog=mysql_query($sqllog) or die(mysql_error());
+                            $rowlog=mysql_fetch_array($reslog);
+                            
+                            $date=substr($rowlog[0],8,2)." ";
+                            switch(substr($rowlog[0],5,2))
+                            {
+                                    case "01": $date= $date."JAN "; break;
+                                    case "02": $date= $date."FEB "; break;
+                                    case "03": $date= $date."MAR "; break;
+                                    case "04": $date= $date."APR "; break;
+                                    case "05": $date= $date."MAY "; break;
+                                    case "06": $date= $date."JUN "; break;
+                                    case "07": $date= $date."JUL "; break;
+                                    case "08": $date= $date."AUG "; break;
+                                    case "09": $date= $date."SEP "; break;
+                                    case "10": $date= $date."OCT "; break;
+                                    case "11": $date= $date."NOV "; break;
+                                    case "12": $date= $date."DES "; break;
+                            }
+                            $date=$date.substr($rowlog[0],0,4);
+                            
+                            echo    '<span>Tersedia Tanggal : <em class="price">'.$date.'</em></em></span>';
+                        }
+                        echo
+                                '</div> <!-- /.product-item -->
+                            </div> <!-- /.col-md-3 -->';
+                    }
                 }
                 ?>
 <!--PHP STOP HERE!-->

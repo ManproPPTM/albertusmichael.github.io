@@ -5,10 +5,6 @@
     $db="PPTPM";
 
     //Create Connection
-    $conn = new mysqli($server,$usr,$psw,$db);
-
-    //Check Connection
-    if ($conn->connect_error) {
-        die("Connection failed");
-    } 
+    mysql_connect($server,$usr,$psw);
+    mysql_select_db($db);
 ?>
