@@ -170,8 +170,8 @@ http://www.templatemo.com/tm-401-sprint
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
             <div class="row">
-<!--PHP HERE!-->
                 <?php
+                //<!--PHP HERE!-->
                 $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
                 $resstok=mysql_query($sqlstok) or die(mysql_error());
                 
@@ -180,6 +180,7 @@ http://www.templatemo.com/tm-401-sprint
                     for($i=0;$i<mysql_num_rows($resstok);$i++)
                     {
                         $rowstok=mysql_fetch_array($resstok);
+                        
                         echo
                             '<div class="col-md-3 col-sm-6">
                                 <div class="product-item">
@@ -190,16 +191,23 @@ http://www.templatemo.com/tm-401-sprint
                                                 <a href="#nogo" class="view-detail">PPTPM</a>
                                             </div>
                                         </div> <!-- /.overlay -->';
+                        
                         if($rowstok[3]=="") $rowstok[3]="product7.jpg";
+                        
                         echo
                                         '<img src="images/products/'.$rowstok[3].'" alt="">
                                     </div> <!-- /.item-thumb -->
                                     <h3>'.$rowstok[1].'</h3>';
+                        
                         $sqllog="SELECT tgl_kembali FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
+                        
                         $reslog=mysql_query($sqllog) or die(mysql_error());
+                        
                         $sisa=$rowstok[2]-mysql_num_rows($reslog);
+                        
                         echo
                                     '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';
+                        
                         if($sisa>0)
                         {
                             echo    '<span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>';
@@ -230,13 +238,14 @@ http://www.templatemo.com/tm-401-sprint
                             
                             echo    '<span>Tersedia Tanggal : <em class="price">'.$date.'</em></em></span>';
                         }
+                        
                         echo
                                 '</div> <!-- /.product-item -->
                             </div> <!-- /.col-md-3 -->';
                     }
                 }
+                //<!--PHP STOP HERE!-->
                 ?>
-<!--PHP STOP HERE!-->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
     </div> <!-- /#products -->
