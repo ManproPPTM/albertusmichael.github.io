@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-    <link href='images/small_logo_.png' rel='shortcut icon'>
+    <link href='../images/small_logo_.png' rel='shortcut icon'>
     <title>PPTPM UKDW</title>
     <meta name="description" content="">
 <!--
@@ -20,14 +20,14 @@ http://www.templatemo.com/tm-401-sprint
 
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/normalize.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/templatemo_misc.css">
-    <link rel="stylesheet" href="css/templatemo_login.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/normalize.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/templatemo_misc.css">
+    <link rel="stylesheet" href="../css/templatemo_login.css">
 
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
 </head>
 <body >
@@ -56,7 +56,7 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="responsive">
                             <div class="main-menu">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="../index.html">Home</a></li>
                                      
                                 </ul>
                             </div>
@@ -69,20 +69,20 @@ http://www.templatemo.com/tm-401-sprint
 
     <!-- /#content -->
     <div id="bg">
-        <form method="post" id="login" action="PeminjamanAlat.html">
-            <input id="id" name="id"value="" type="text" placeholder="USERNAME" required/> <br class="enter3"/>
+        <form method="post" id="login" action="login.php">
+            <input id="id" name="id" value="" type="text" placeholder="USERNAME" required/> <br class="enter3"/>
             <input id="password" name="password" value="" type="password" placeholder="PASSWORD" required />
             <br class="enter" /><button id="bmasuk" type="submit">SIGN IN</button>
         </form>
     </div>
 
    
-    <script src="js/vendor/jquery-1.10.1.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-    <script src="js/jquery.easing-1.3.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/vendor/jquery-1.10.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+    <script src="../js/jquery.easing-1.3.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/main.js"></script>
     <!-- templatemo 401 sprint -->
 </body>
 </html>
