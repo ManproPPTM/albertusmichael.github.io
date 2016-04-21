@@ -3,6 +3,9 @@
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<?php
+    require "connectionlocal.php";
+?>
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
@@ -86,91 +89,30 @@ http://www.templatemo.com/tm-401-sprint
                     <td>Nama Barang</td>
                     <td>Stok</td>
                     <td></td>
-                    </tr>
-                <tr>
-                    <td>1</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>2</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>3</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>4</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
                 </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-
+                <?php
+                //<!--PHP Code Here-->
+                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
+                $resstok=$conn->query($sqlstok);
+                
+                if(mysqli_num_rows($resstok)>0)
+                {
+                    for($i=0;$i<mysqli_num_rows($resstok);$i++)
+                    {
+                        $rowstok=mysqli_fetch_array($resstok);
+                        
+                        echo
+                            '<tr>
+                                <td>'.($i+1).'</td>
+                                <td>'.$rowstok[0].'</td>      
+                                <td>'.$rowstok[1].'</td>
+                                <td>'.$rowstok[2].'</td>
+                                <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
+                            </tr>';
+                    }
+                }
+                //<!--PHP Code Here-->
+                ?>
             </table>
         </div> <!-- /.container -->
     </div> <!-- /#services -->
@@ -187,96 +129,60 @@ http://www.templatemo.com/tm-401-sprint
 
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
-                    <td>No</td>
+                    <td>Nomor Peminjaman</td>
                     <td>Kode Barang</td>      
-                    <td>Nama Barang</td>
-                    <td>Stok</td>
-                    <td></td>
-                    </tr>
-                <tr>
-                    <td>1</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>2</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>3</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                    </tr>
-                <tr>
-                    <td>4</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
+                    <td>Tanggal Pinjam</td>
+                    <td>Tanggal Kembali</td>
+                    <td>Status</td>
                 </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-                </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>P01</td>      
-                    <td>Projector Optoma</td>
-                    <td>2</td>
-                    <td><img src="images/plus.png" alt=""><img src="images/minus.png" alt=""></td>
-                </tr>
-
+                <?php
+                //<!--PHP Code Here-->
+                $sqllog="SELECT kode_peminjaman, kode_barang, tgl_pinjam, tgl_kembali, status FROM log_peminjaman";
+                $reslog=$conn->query($sqllog);
+                
+                if(mysqli_num_rows($reslog)>0)
+                {
+                    for($i=0;$i<mysqli_num_rows($reslog);$i++)
+                    {
+                        $rowlog=mysqli_fetch_array($reslog);
+                        
+                        echo
+                            '<tr>
+                                <td>'.$rowlog[0].'</td>      
+                                <td>'.$rowlog[1].'</td>';
+                        
+                        for($j=2;$j<=3;$j++)
+                        {
+                            $date=substr($rowlog[$j],8,2)." ";
+                            switch(substr($rowlog[$j],5,2))
+                            {
+                                    case "01": $date= $date."JAN "; break;
+                                    case "02": $date= $date."FEB "; break;
+                                    case "03": $date= $date."MAR "; break;
+                                    case "04": $date= $date."APR "; break;
+                                    case "05": $date= $date."MAY "; break;
+                                    case "06": $date= $date."JUN "; break;
+                                    case "07": $date= $date."JUL "; break;
+                                    case "08": $date= $date."AUG "; break;
+                                    case "09": $date= $date."SEP "; break;
+                                    case "10": $date= $date."OCT "; break;
+                                    case "11": $date= $date."NOV "; break;
+                                    case "12": $date= $date."DES "; break;
+                            }
+                            $date=$date.substr($rowlog[$j],0,4);
+                            echo    '<td>'.$date.'</td>';
+                        }
+                        
+                        switch($rowlog[4])
+                        {
+                            case "PINJAM": echo '<td style="color: red">PINJAM</td>'; break;
+                            case "KEMBALI": echo '<td style="color: green">KEMBALI</td>';
+                        }
+                        echo '</tr>';
+                    }
+                }
+                //<!--PHP Code Here-->
+                ?>
             </table>
 
 
