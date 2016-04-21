@@ -4,7 +4,7 @@
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <?php
-    require "connectionlocal.php";
+    require "connection.php";
 ?>
 <head>
     <meta charset="utf-8">
