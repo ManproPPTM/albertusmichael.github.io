@@ -27,6 +27,22 @@ td{
   min-width: 40px;
 }
 
+.center-coloumn{
+   margin: auto;
+    width: 50%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    text-align: left;
+}
+
+.center-coloumn button{
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+/*bates*/
+
 
 /*div.image1 {
    width:30px; 
