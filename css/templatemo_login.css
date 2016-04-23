@@ -17,26 +17,23 @@ http://www.templatemo.com/tm-401-sprint
 
 
 
-#bg{
+#login-bg{
 
-  background-color: transparent;
-  width: 1350px;
-  height: 639px;
-  margin: auto;
-  background-image: url("file:///H:/Manpro%20Aseeek/templatemo/images/slider/slide1.jpg");
+  background: url(foto.jpg);
   background-repeat: no-repeat;
   text-align: center;
-
 }
+
 
 /*form login*/
 #login{
   
   width: 1000px;
-  padding-top: 400px;
+  padding-top: 300px;
   padding-left: 350px;
   /*padding-right: 300px;*/
   padding-bottom: 0px;
+
   /*padding: 350px;*/
 }
 #bmasuk{

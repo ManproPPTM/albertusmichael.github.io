@@ -30,15 +30,15 @@ http://www.templatemo.com/tm-401-sprint
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
 </head>
-<body >
+<body style="background: url(foto.JPG)">
     <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
     
-     <div id="front">
+     <div id="front" >
         <div class="site-header">
-            <div class="container">
-                <div class="row">
+            <div class="container" >
+                <div class="row" >
 
                     <div class="col-md-8 col-sm-6 col-xs-6">
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
@@ -68,7 +68,7 @@ http://www.templatemo.com/tm-401-sprint
     </div> <!-- /#front -->
 
     <!-- /#content -->
-    <div id="bg">
+    <div id="login-bg">
         <form method="post" id="login" action="login.php">
             <input id="id" name="id" value="" type="text" placeholder="USERNAME" required/> <br class="enter3"/>
             <input id="password" name="password" value="" type="password" placeholder="PASSWORD" required />

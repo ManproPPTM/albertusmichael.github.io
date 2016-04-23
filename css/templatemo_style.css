@@ -32,7 +32,9 @@ td{
     width: 50%;
     border: 3px solid #73AD21;
     padding: 10px;
+    margin-top: 12%;
     text-align: left;
+    color: white;
 }
 
 .center-coloumn button{
@@ -41,6 +43,8 @@ td{
     border: none;
     padding: 10px;
 }
+
+
 /*bates*/
 
 
