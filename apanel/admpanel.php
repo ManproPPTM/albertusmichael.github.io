@@ -4,7 +4,7 @@
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <?php
-    require "../connectionlocal.php";
+    require "../connection.php";
 ?>
 <head>
     <meta charset="utf-8">
@@ -33,7 +33,7 @@ http://www.templatemo.com/tm-401-sprint
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
 </head>
-<body style="background: url(foto.JPG)">
+<body>
     <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
@@ -81,7 +81,11 @@ http://www.templatemo.com/tm-401-sprint
     <div id="services" class="content-section">
         <div class="container text-center">
             <H1>Daftar Barang</H1>
-
+            <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
+                <a href='add.php'>
+                    <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
+                </a>
+            </div>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
                     <td>No</td>
@@ -123,10 +127,15 @@ http://www.templatemo.com/tm-401-sprint
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="section-title">Log Peminjam</h1>
-                </div> <!-- /.col-md-12 -->
-            </div> <!-- /.row -->
-
+                    <h1>Log Peminjam</h1>
+                </div>
+            </div> 
+            
+            <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
+                <a href='#'>
+                    <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
+                </a>
+            </div>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
                     <td>Nomor Peminjaman</td>
