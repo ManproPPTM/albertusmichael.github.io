@@ -5,6 +5,72 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <?php
     require "../connection.php";
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])&&basename($_FILES["gbrbrg"]["name"])!="") {
+        $target_dir = "../images/products/";
+        $target_file = $target_dir . basename($_FILES["gbrbrg"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" )
+        {
+            $uploadOk = 0;
+        }
+        else
+        {
+            $check = getimagesize($_FILES["gbrbrg"]["tmp_name"]);
+            if($check !== false) {
+                $width = 400;
+                $height = 400;
+                /* Get original image x y*/
+                list($w, $h) = getimagesize($_FILES['gbrbrg']['tmp_name']);
+                /* calculate new image size with ratio */
+                $ratio = max($width/$w, $height/$h);
+                $h = ceil($height / $ratio);
+                $x = ($w - $width / $ratio) / 2;
+                $w = ceil($width / $ratio);
+                /* new file name */
+                $path = strrev(__DIR__);
+                $path = substr($path, 6);
+                $path = strrev($path);
+                $path = $path.'images\products\\'.$_FILES['gbrbrg']['name'];
+                /* read binary data from image file */
+                $imgString = file_get_contents($_FILES['gbrbrg']['tmp_name']);
+                /* create image from string */
+                $image = imagecreatefromstring($imgString);
+                $tmp = imagecreatetruecolor($width, $height);
+                imagecopyresampled($tmp, $image,
+                    0, 0,
+                    $x, 0,
+                    $width, $height,
+                    $w, $h);
+                /* Save image */
+                switch ($_FILES['gbrbrg']['type']) {
+                case 'image/jpeg':
+                    imagejpeg($tmp, $path, 100);
+                    break;
+                case 'image/png':
+                    imagepng($tmp, $path, 0);
+                    break;
+                case 'image/gif':
+                    imagegif($tmp, $path);
+                    break;
+                default:
+                    $uploadOk = 0;
+                    break;
+                }
+                /* cleanup memory */
+                imagedestroy($image);
+                imagedestroy($tmp);
+                $uploadOk = 1;
+            } else {
+                $uploadOk = 0;
+            }
+        }
+    }
+    else if(isset($_POST["submit"]))
+    {
+        $uploadOk = 0;
+    }
 ?>
 <head>
     <meta charset="utf-8">
@@ -50,6 +116,7 @@ http://www.templatemo.com/tm-401-sprint
                             <ul>
                                 <li><a href="#services">Daftar_Barang</a></li>
                                 <li><a href="#inventory">Log_Peminjaman</a></li>
+                                <li>Jessica, Logout</li>
                             </ul>
                             <ul>
                                 
@@ -64,7 +131,7 @@ http://www.templatemo.com/tm-401-sprint
                                 <ul>
                                 <li><a href="#services">Daftar_Barang</a></li>
                                 <li><a href="#inventory">Log_Peminjaman</a></li>
-                                     <li><a href="#">Jessica, Logout</a></li>
+                                 <li><a href="#">Jessica, Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -75,29 +142,32 @@ http://www.templatemo.com/tm-401-sprint
     </div> <!-- /#front -->
 
     <!-- /#content -->
-    <div class="container text-center" >
-
+    <div class="container text-center">
         <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
-                <h2 style="color: white">DATA PENYEWA</h2><br>
+            <form action="add.php" method="post" enctype="multipart/form-data">
+                <h2 style="color: white">FORM TAMBAH BARANG</h2><br>
                 Kode Barang : <br>
                 <input type="text" name="kodebrg"><br>
                 Nama Barang : <br>
                 <input type="text" name="namabrg"><br>
                 Stok Barang saat ini : <br>
                 <input type="text" name="stkbrg"><br>
-                Masukkan Gambar : <br>
+                Masukkan Gambar<br>
+                (Resized and trimmed to 400x400px) : <br>
                 <input type="file" name="gbrbrg" style="background-color: transparent; border: 0px; width: 250px; float: left">
-                <button type="button" onclick="alert('Barang Tersimpan !')" style="margin: 8px 0px 10px 5px; position: absolute; right: 10px">Simpan Barang</button>
-                <div style="height: 55px"></div>
-            </div>
-
-
-        <div class="col-md-5 col-sm-12">
-            
+                <div style="position: absolute; right: 10px">
+                    <?php
+                    if(isset($uploadOk))
+                    {
+                        if($uploadOk==1) echo '<span style="color: #00FF00">Berhasil Upload!</span>';
+                        else if($uploadOk==0) echo '<span style="color: #FF3333">Gagal Upload!</span>';
+                    }
+                    ?>
+                    <button type="submit" name="submit" onclick="" style="margin: 8px 0px 10px 5px;">Simpan Barang</button>
+                </div>
+                <div style="height: 44px"></div>
+            </form>
         </div>
-            
-        
-
     </div>
 
    

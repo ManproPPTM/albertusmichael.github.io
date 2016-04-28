@@ -173,10 +173,15 @@ form input[type="text"],
 form input[type="email"],
 form input[type="number"],
 form input[type="password"] {
-  background: #fff;
-  border: 1px solid #fff;
-  padding: 7px 10px;
-  width: 60%;
+    margin-bottom: 30px;
+    background-color: #f6f7f8;
+    padding: 14px;
+    font-size: 14px;
+    color: #838383;
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid #b5c1c9;
+    width: 100%;
 }
 form input[type="text"]:focus,
 form input[type="email"]:focus,
