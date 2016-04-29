@@ -5,6 +5,18 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <?php
     require "../connection.php";
+    session_start();
+    $timeout = 900;
+
+    if(isset($_SESSION['timeout'])) {
+        $duration = time() - (int)$_SESSION['timeout'];
+        if($duration > $timeout) {
+            session_destroy();
+            header("location:index.php");
+        }
+    }
+     
+    $_SESSION['timeout'] = time();
 ?>
 <head>
     <meta charset="utf-8">
@@ -48,7 +60,7 @@ http://www.templatemo.com/tm-401-sprint
                             <ul>
                                 <li><a href="#services">Daftar_Barang</a></li>
                                 <li><a href="#inventory">Log_Peminjaman</a></li>
-                                <li>Jessica, Logout</li>
+                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
                                 
@@ -63,7 +75,7 @@ http://www.templatemo.com/tm-401-sprint
                                 <ul>
                                 <li><a href="#services">Daftar_Barang</a></li>
                                 <li><a href="#inventory">Log_Peminjaman</a></li>
-                                     <li><a href="#">Jessica, Logout</a></li>
+                                 <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>
                         </div>
