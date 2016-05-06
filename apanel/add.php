@@ -49,7 +49,7 @@
                 $path = strrev(__DIR__);
                 $path = substr($path, 6);
                 $path = strrev($path);
-                $path = $path.'images\products\\'.$fname.".".$imageFileType;
+                $path = $path.'images/products/'.$fname.".".$imageFileType;
                 /* read binary data from image file */
                 $imgString = file_get_contents($_FILES['gbrbrg']['tmp_name']);
                 /* create image from string */
