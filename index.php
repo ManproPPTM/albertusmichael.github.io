@@ -192,18 +192,18 @@ http://www.templatemo.com/tm-401-sprint
                                             </div>
                                         </div> <!-- /.overlay -->';
                         
-                        if($rowstok[3]=="") $rowstok[3]="product7.jpg";
+                        if($rowstok[3]=="") $rowstok[3]="default.jpg";
                         
                         echo
                                         '<img src="images/products/'.$rowstok[3].'" alt="">
                                     </div> <!-- /.item-thumb -->
                                     <h3>'.$rowstok[1].'</h3>';
                         
-                        $sqllog="SELECT tgl_kembali FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
+                        $sqllog="SELECT COUNT(kode_peminjaman) AS num FROM log_peminjaman WHERE kode_barang='".$rowstok[0]."' AND status='PINJAM'";
                         
                         $reslog=$conn->query($sqllog);
-                        
-                        $sisa=$rowstok[2]-mysqli_num_rows($reslog);
+                        $reslog=$reslog->fetch_assoc();
+                        $sisa=$rowstok[2]-$reslog["num"];
                         
                         echo
                                     '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';

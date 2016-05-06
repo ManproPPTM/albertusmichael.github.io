@@ -15,6 +15,12 @@
             header("location:index.php");
         }
     }
+    //count records
+    $q = "SELECT COUNT(*) AS num FROM daftar_barang";
+    $fname = $conn->query($q);
+    $fname = $fname->fetch_assoc();
+    $fname = "P".($fname["num"]+1);
+
     $_SESSION['timeout'] = time();
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])&&basename($_FILES["gbrbrg"]["name"])!="") {
@@ -29,7 +35,7 @@
         else
         {
             $check = getimagesize($_FILES["gbrbrg"]["tmp_name"]);
-            if($check !== false) {
+            if($check !== false&&$_POST["namabrg"]!=""&&$_POST["stkbrg"]!="") {
                 $width = 400;
                 $height = 400;
                 /* Get original image x y*/
@@ -43,7 +49,7 @@
                 $path = strrev(__DIR__);
                 $path = substr($path, 6);
                 $path = strrev($path);
-                $path = $path.'images\products\\'.$_FILES['gbrbrg']['name'];
+                $path = $path.'images\products\\'.$fname.".".$imageFileType;
                 /* read binary data from image file */
                 $imgString = file_get_contents($_FILES['gbrbrg']['tmp_name']);
                 /* create image from string */
@@ -72,7 +78,10 @@
                 /* cleanup memory */
                 imagedestroy($image);
                 imagedestroy($tmp);
-                $uploadOk = 1;
+                
+                //insert database
+                $q = "INSERT INTO daftar_barang(kode_barang, nama_barang, stok, imgpath) VALUES('".$fname."','".$_POST['namabrg']."','".$_POST['stkbrg']."','".$fname.".".$imageFileType."')";
+                $conn->query($q)===true;
             } else {
                 $uploadOk = 0;
             }
@@ -80,8 +89,20 @@
     }
     else if(isset($_POST["submit"]))
     {
-        $uploadOk = 0;
+        if($_POST["namabrg"]!=""&&$_POST["stkbrg"]!="")
+        {
+            $q = "INSERT INTO daftar_barang(kode_barang, nama_barang, stok) VALUES('".$fname."','".$_POST["namabrg"]."','".$_POST["stkbrg"]."')";
+            $conn->query($q);
+            $uploadOk = 1;
+        }
+        else $uploadOk = 0;
     }
+
+    //re-count records
+    $q = "SELECT COUNT(*) AS num FROM daftar_barang";
+    $fname = $conn->query($q);
+    $fname = $fname->fetch_assoc();
+    $fname = "P".($fname["num"]+1);
 ?>
 <head>
     <meta charset="utf-8">
@@ -125,8 +146,7 @@ http://www.templatemo.com/tm-401-sprint
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
+                                <li><a href="#services">Tambah_Barang</a></li>
                                 <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
@@ -140,8 +160,7 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="responsive">
                             <div class="main-menu">
                                 <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
+                                <li><a href="#services">Tambah_Barang</a></li>
                                 <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>
@@ -158,7 +177,7 @@ http://www.templatemo.com/tm-401-sprint
             <form action="add.php" method="post" enctype="multipart/form-data">
                 <h2 style="color: white">FORM TAMBAH BARANG</h2><br>
                 Kode Barang : <br>
-                <input type="text" name="kodebrg"><br>
+                <input type="text" name="kodebrg" value="<?php echo $fname; ?>" disabled><br>
                 Nama Barang : <br>
                 <input type="text" name="namabrg"><br>
                 Stok Barang saat ini : <br>

@@ -4,11 +4,11 @@ session_start();
 
 require "../connection.php";
 $pass=md5($_POST['password']); 
-$sql=mysql_query("SELECT username,password  FROM pengguna
+$sql=$conn->query("SELECT username,password  FROM pengguna
                   WHERE username = '$_POST[id]' 
                   AND password = '$pass'"); 
-$data=mysql_fetch_array($sql); 
-$hasil=mysql_num_rows($sql); 
+$data=mysqli_fetch_array($sql); 
+$hasil=mysqli_num_rows($sql); 
 if ($hasil > 0 ) 
 { 
 	$_SESSION['user']=$data['username']; 
