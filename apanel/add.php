@@ -81,7 +81,8 @@
                 
                 //insert database
                 $q = "INSERT INTO daftar_barang(kode_barang, nama_barang, stok, imgpath) VALUES('".$fname."','".$_POST['namabrg']."','".$_POST['stkbrg']."','".$fname.".".$imageFileType."')";
-                $conn->query($q)===true;
+                $conn->query($q);
+                header('location:admpanel.php?success=1');
             } else {
                 $uploadOk = 0;
             }

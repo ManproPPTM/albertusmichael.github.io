@@ -17,6 +17,11 @@
     }
      
     $_SESSION['timeout'] = time();
+    if (isset($_GET["success"]))
+    {
+        echo "<script>alert('Berhasil upload!');</script>";
+        echo "<script>window.location='admpanel.php';</script>";
+    }
 ?>
 <head>
     <meta charset="utf-8">
@@ -104,7 +109,7 @@ http://www.templatemo.com/tm-401-sprint
                     <td>Kode Barang</td>      
                     <td>Nama Barang</td>
                     <td>Stok</td>
-                    <td></td>
+                    <td>Tambah/Kurang Stok</td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
@@ -123,7 +128,7 @@ http://www.templatemo.com/tm-401-sprint
                                 <td>'.$rowstok[0].'</td>      
                                 <td>'.$rowstok[1].'</td>
                                 <td>'.$rowstok[2].'</td>
-                                <td><img src="../images/plus.png" alt=""><img src="../images/minus.png" alt=""></td>
+                                <td><a href="update.php?id='.$rowstok[0].'&stat=plus"><img src="../images/plus.png" alt=""></a><a href="update.php?id='.$rowstok[0].'&stat=minus"><img src="../images/minus.png" alt=""></a></td>
                             </tr>';
                     }
                 }
@@ -155,6 +160,7 @@ http://www.templatemo.com/tm-401-sprint
                     <td>Tanggal Pinjam</td>
                     <td>Tanggal Kembali</td>
                     <td>Status</td>
+                    <td>Ubah Status</td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
@@ -196,8 +202,14 @@ http://www.templatemo.com/tm-401-sprint
                         
                         switch($rowlog[4])
                         {
-                            case "PINJAM": echo '<td style="color: red">PINJAM</td>'; break;
-                            case "KEMBALI": echo '<td style="color: green">KEMBALI</td>';
+                            case "PINJAM": 
+                                echo '<td style="color: red">PINJAM</td>';
+                                echo '<td><a href="#"><button style="background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Kembali</button></a></td>';
+                                break;
+                            case "KEMBALI": 
+                                echo '<td style="color: green">KEMBALI</td>';
+                                echo '<td><a href="#"><button style="background-color: #7CDF80; color: white; border: 0; height: 30px; width: 80px" disabled>Kembali</button></a></td>';
+                                break;
                         }
                         echo '</tr>';
                     }
