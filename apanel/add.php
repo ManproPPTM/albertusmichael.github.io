@@ -81,8 +81,7 @@
                 
                 //insert database
                 $q = "INSERT INTO daftar_barang(kode_barang, nama_barang, stok, imgpath) VALUES('".$fname."','".$_POST['namabrg']."','".$_POST['stkbrg']."','".$fname.".".$imageFileType."')";
-                $conn->query($q);
-                header('location:admpanel.php?success=1');
+                $conn->query($q)===true;
             } else {
                 $uploadOk = 0;
             }
@@ -176,9 +175,9 @@ http://www.templatemo.com/tm-401-sprint
     <div class="container text-center">
         <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
             <form action="add.php" method="post" enctype="multipart/form-data">
-                <h2 style="color: white">FORM TAMBAH BARANG</h2><br>
-                Kode Barang : <br>
-                <input type="text" name="kodebrg" value="<?php echo $fname; ?>" disabled><br>
+                <h2 style="color: white">Form Tambah Barang</h2><br>
+               <!--  Kode Barang : <br> -->
+                <input type="text" name="kodebrg" value="<?php echo $fname; ?>" hidden><br>
                 Nama Barang : <br>
                 <input type="text" name="namabrg"><br>
                 Stok Barang saat ini : <br>
@@ -194,7 +193,8 @@ http://www.templatemo.com/tm-401-sprint
                         else if($uploadOk==0) echo '<span style="color: #FF3333">Gagal Upload!</span>';
                     }
                     ?>
-                    <button type="submit" name="submit" onclick="" style="margin: 8px 0px 10px 5px;">Simpan Barang</button>
+                    <button type="submit" name="submit"  class='btn btn-success'>Simpan</button>
+                    <button type="button" onclick="location.href='admpanel.php';" class='btn btn-default'>Kembali</button>
                 </div>
                 <div style="height: 44px"></div>
             </form>

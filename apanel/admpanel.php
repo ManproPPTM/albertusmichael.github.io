@@ -17,11 +17,6 @@
     }
      
     $_SESSION['timeout'] = time();
-    if (isset($_GET["success"]))
-    {
-        echo "<script>alert('Berhasil upload!');</script>";
-        echo "<script>window.location='admpanel.php';</script>";
-    }
 ?>
 <head>
     <meta charset="utf-8">
@@ -38,8 +33,8 @@ http://www.templatemo.com/tm-401-sprint
 -->
     <meta name="viewport" content="width=device-width">
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
-
+  
+<!--     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet"> -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/normalize.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -48,6 +43,41 @@ http://www.templatemo.com/tm-401-sprint
     <link rel="stylesheet" href="../css/templatemo_style.css">
 
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
+
+
+    <style type="text/css">
+        button#pinjam {width:6em}
+        button#pinjam:hover span {display:none}
+        button#pinjam:hover:before {content:"KEMBALI"}
+    </style>
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+     <script>
+        $(document).ready(function(){
+
+             $("#pinjam").click(function () {
+                var $td= $(this).closest('tr').children('td');  
+                var kodepinjam = $td.eq(0).text();
+                var data = 'kodepinjam='+kodepinjam;
+
+                $.ajax(
+                {
+                       type: "POST",
+                       url: "updateStatus.php",
+                       data: data,
+                       cache: false,
+                        success: function()
+                       {
+                            window.location.href = "http://localhost/PPTPMLatest/apanel/admpanel.php";
+                       }
+                 });        
+            });
+           
+
+        });
+    </script>
 
 </head>
 <body>
@@ -63,12 +93,12 @@ http://www.templatemo.com/tm-401-sprint
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
+                                <li><a href="#services">Daftar Barang</a></li>
+                                <li><a href="#inventory">Log Peminjaman</a></li>
                                 <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
-                                
+                            
                             </ul>
                         </div> <!-- /.main-menu -->
                     </div> <!-- /.col-md-8 -->
@@ -78,9 +108,9 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="responsive">
                             <div class="main-menu">
                                 <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
-                                 <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                <li><a href="#services">Daftar Barang</a></li>
+                                <li><a href="#inventory">Log Peminjaman</a></li>
+                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -144,15 +174,29 @@ http://www.templatemo.com/tm-401-sprint
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1>Log Peminjam</h1>
+                    <h2>Log Peminjaman</h2>
                 </div>
             </div> 
             
             <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
-                <a href='#'>
+                <a href='tmbh-barang.php'>
                     <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
                 </a>
             </div>
+
+            <?php
+            // Tentukan batas,cek halaman & posisi data
+            $batas   = 6;
+            $halaman = @$_GET['halaman'];
+            if(empty($halaman)){
+                $posisi  = 0;
+                $halaman = 1;
+            }
+            else{ 
+              $posisi  = ($halaman-1) * $batas; 
+            }
+
+            ?>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
                     <td>Nomor Peminjaman</td>
@@ -160,13 +204,12 @@ http://www.templatemo.com/tm-401-sprint
                     <td>Tanggal Pinjam</td>
                     <td>Tanggal Kembali</td>
                     <td>Status</td>
-                    <td>Ubah Status</td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
-                $sqllog="SELECT kode_peminjaman, kode_barang, tgl_pinjam, tgl_kembali, status FROM log_peminjaman";
+                $sqllog="SELECT kode_peminjaman, kode_barang, tgl_pinjam, tgl_kembali, status FROM log_peminjaman order by tgl_kembali asc LIMIT $posisi,$batas";
                 $reslog=$conn->query($sqllog);
-                
+                $no = $posisi+1;
                 if(mysqli_num_rows($reslog)>0)
                 {
                     for($i=0;$i<mysqli_num_rows($reslog);$i++)
@@ -202,23 +245,34 @@ http://www.templatemo.com/tm-401-sprint
                         
                         switch($rowlog[4])
                         {
-                            case "PINJAM": 
-                                echo '<td style="color: red">PINJAM</td>';
-                                echo '<td><a href="update.php?idlog='.$rowlog[0].'"><button style="background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Kembali</button></a></td>';
-                                break;
-                            case "KEMBALI": 
-                                echo '<td style="color: green">KEMBALI</td>';
-                                echo '<td><a><button style="background-color: #7CDF80; color: white; border: 0; height: 30px; width: 80px" disabled>Kembali</button></a></td>';
-                                break;
+                            case "PINJAM": echo '<td style="color: red"><button id="pinjam" class="btn btn-warning btn-xs"><span>PINJAM</span></button></td>'; break;
+                            case "KEMBALI": echo '<td style="color: green">KEMBALI</td>';
                         }
                         echo '</tr>';
                     }
                 }
+                $no++;
                 //<!--PHP Code Here-->
                 ?>
+
             </table>
+            <?php
 
+                    // Hitung total data dan halaman serta link 1,2,3 
+                    $query2     = mysqli_query($conn, "select * from log_peminjaman");
+                    $jmldata    = mysqli_num_rows($query2);
+                    $jmlhalaman = ceil($jmldata/$batas);
 
+                    echo "<br> Halaman : ";
+
+                    for($i=1;$i<=$jmlhalaman;$i++)
+                    if ($i != $halaman){
+                        echo " <a href=\"admpanel.php?halaman=$i\">$i</a> | ";
+                    }
+                    else{ 
+                        echo " <b>$i</b> | "; 
+                    }
+            ?>
         </div> <!-- /.container -->
     </div> <!-- /#products -->
 
@@ -238,11 +292,11 @@ http://www.templatemo.com/tm-401-sprint
             </div> <!-- /.col-md-6 -->
                 <div class="col-md-4 col-sm-6">
                     <ul class="social">
-                        <li><a href="#" class="fa fa-facebook"></a></li>
+                       <!--  <li><a href="#" class="fa fa-facebook"></a></li>
                         <li><a href="#" class="fa fa-twitter"></a></li>
                         <li><a href="#" class="fa fa-instagram"></a></li>
                         <li><a href="#" class="fa fa-linkedin"></a></li>
-                        <li><a href="#" class="fa fa-rss"></a></li>
+                        <li><a href="#" class="fa fa-rss"></a></li> -->
                     </ul>
                 </div> <!-- /.col-md-6 -->
             </div> <!-- /.row -->
