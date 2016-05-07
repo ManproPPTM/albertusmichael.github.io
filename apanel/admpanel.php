@@ -204,11 +204,11 @@ http://www.templatemo.com/tm-401-sprint
                         {
                             case "PINJAM": 
                                 echo '<td style="color: red">PINJAM</td>';
-                                echo '<td><a href="#"><button style="background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Kembali</button></a></td>';
+                                echo '<td><a href="update.php?idlog='.$rowlog[0].'"><button style="background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Kembali</button></a></td>';
                                 break;
                             case "KEMBALI": 
                                 echo '<td style="color: green">KEMBALI</td>';
-                                echo '<td><a href="#"><button style="background-color: #7CDF80; color: white; border: 0; height: 30px; width: 80px" disabled>Kembali</button></a></td>';
+                                echo '<td><a><button style="background-color: #7CDF80; color: white; border: 0; height: 30px; width: 80px" disabled>Kembali</button></a></td>';
                                 break;
                         }
                         echo '</tr>';
