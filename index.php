@@ -92,7 +92,6 @@ http://www.templatemo.com/tm-401-sprint
                     <div class="row">
                         <div class="col-md-12 text-right">
                             <div class="slider-caption">
-                                <h2>HTML5 </h2>
                             </div>
                         </div>
                     </div>
@@ -102,7 +101,13 @@ http://www.templatemo.com/tm-401-sprint
                 <img src="images/slider/slide2.jpg" alt="slider image 2">
                 <div class="container caption-wrapper">
                     <div class="slider-caption">
-                        <h2>Using Bootstrap Framework</h2>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="images/slider/slide3.jpg" alt="slider image 2">
+                <div class="container caption-wrapper">
+                    <div class="slider-caption">
                     </div>
                 </div>
             </li>
@@ -115,7 +120,7 @@ http://www.templatemo.com/tm-401-sprint
                         <div id="bx-pager">
                             <a data-slide-index="0" href=""><img src="images/slider/thumb1.jpg" alt="image 1" /></a>
                             <a data-slide-index="1" href=""><img src="images/slider/thumb2.jpg" alt="image 2" /></a>
-                            
+                            <a data-slide-index="1" href=""><img src="images/slider/thumb3.jpg" alt="image 2" /></a>
                         </div>
                     </div>
                 </div>
@@ -131,8 +136,8 @@ http://www.templatemo.com/tm-401-sprint
                 <div class="col-md-3 col-sm-6">
                     <div class="service-item">
                         <span class="service-icon first"></span>
-                        <h3>Elelctronic Graphic and Design</h3>
-                        <p> Memberi layanan visual design dan media production seperti, perancangan media instrusional maupun non-instruksional , pembuatan presentasi data elektronik dan transparansi OHP , desain grafis dan digital imaging</p>
+                        <h3>Electronic Graphic and Design</h3>
+                        <p> Memberi layanan visual design dan media production seperti, perancangan media instrusional maupun non-instruksional , pembuatan presentasi data elektronik dan transparansi OHP , desain grafis dan digital imaging.</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
                 <a href="#inventory">
@@ -140,21 +145,21 @@ http://www.templatemo.com/tm-401-sprint
                     <div class="service-item">
                         <span class="service-icon second"></span>
                         <h3>Peminjaman Alat</h3>
-                        <p>Memberi dukungan dalam hal-hal teknis, seperti; peminjaman projector, perangkat A/V dan computer multimedia</p>
+                        <p>Memberi dukungan dalam hal-hal teknis, seperti; peminjaman projector, perangkat A/V dan computer multimedia.</p>
                     </div> <!-- /.service-item --></a>
                 </div> <!-- /.col-md-3 -->
                 <div class="col-md-3 col-sm-6">
                     <div class="service-item">
                         <span class="service-icon third"></span>
                         <h3>Instructional Computing</h3>
-                        <p>membantu pengajar dalam mengidentifikasikan dan menggunakan teknologi dan sumber daya instruksional yang lain.</p>
+                        <p>Membantu pengajar dalam mengidentifikasikan dan menggunakan teknologi dan sumber daya instruksional yang lain.</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
                 <div class="col-md-3 col-sm-6">
                     <div class="service-item">
                         <span class="service-icon fourth"></span>
                         <h3>Media</h3>
-                        <p>Memberikan layanan media dokumentasi seperti video recorder, kamera, dsb</p>
+                        <p>Memberikan layanan media dokumentasi seperti video recorder, kamera, dsb.</p>
                     </div> <!-- /.service-item -->
                 </div> <!-- /.col-md-3 -->
             </div> <!-- /.row -->
@@ -166,7 +171,7 @@ http://www.templatemo.com/tm-401-sprint
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h1 class="section-title">Semua Barang</h1>
+                    <h1 class="section-title">Inventory</h1>
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
             <div class="row">
@@ -250,11 +255,18 @@ http://www.templatemo.com/tm-401-sprint
         </div> <!-- /.container -->
     </div> <!-- /#products -->
 
-     <div id="about" class="content-section">
+     <!-- <div id="about" class="content-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h1 class="section-title">About</h1>
+                    <p>
+                        PPTPM atau Pusat Pengembangan Teknologi Pengajaran dan Multimedia dibentuk 1 April 2001. PPTPM adalah salah 
+                        satu Unit Pelaksana Teknis dari Universitas Kristen Duta Wacana. 
+                        Salah satu tugas pokok PPTPM adalah menyediakan dukungan teknis dalam 
+                        perancangan dan pengembangan bahan ajar yang menggunakan media instruksional dan teknologi, selain itu juga
+                        memberikan dukungan aplikasi teknologi dalam proses belajar mengajar.
+                    </p>
                     <p> Prosedur Peminjaman :</p>
                     <p>1. Mengunjungi website PPTPM yang tersedia</p>
                     <p>2. Memilih barang yang hendak di pinjam serta cek ketersediaan barang tersebut</p>
@@ -262,8 +274,45 @@ http://www.templatemo.com/tm-401-sprint
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
-    </div> <!-- /#products -->
+    </div> <!-- /#products --> -->
 
+    <div id="product-promotion" class="content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="section-title">About</h1>
+                </div> <!-- /.col-md-12 -->
+            </div> <!-- /.row -->
+            <div class="row">
+                <div class="col-md-2 col-sm-3">
+                    
+                </div> <!-- /.col-md-2 -->
+                <div class="col-md-8 col-sm-6">
+                    <div class="item-large">
+                        <div class="item-large-content">
+                            <p>
+                                PPTPM atau Pusat Pengembangan Teknologi Pengajaran dan Multimedia dibentuk 1 April 2001. PPTPM adalah salah 
+                                satu Unit Pelaksana Teknis dari Universitas Kristen Duta Wacana. 
+                                Salah satu tugas pokok PPTPM adalah menyediakan dukungan teknis dalam 
+                                perancangan dan pengembangan bahan ajar yang menggunakan media instruksional dan teknologi, selain itu juga
+                                memberikan dukungan aplikasi teknologi dalam proses belajar mengajar.
+                            </p>
+                            <p> Prosedur Peminjaman :</p>
+                            <p>1. Mengunjungi website PPTPM yang tersedia</p>
+                            <p>2. Memilih barang yang hendak di pinjam serta cek ketersediaan barang tersebut</p>
+                            <p>3. Lalu datang ke kantor PPTPM</p>
+                           
+                        </div> <!-- /.item-large-content -->
+                    </div> <!-- /.item-large -->
+                </div> <!-- /.col-md-8 -->
+                <div class="col-md-2 col-sm-3">
+                   
+                </div> <!-- /.col-md-2 -->
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </div> <!-- /#product-promotion -->
+
+<!-- batass -->
 
    
 
@@ -283,9 +332,36 @@ http://www.templatemo.com/tm-401-sprint
                 <div class="col-md-6 col-sm-6">
                     <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.035660495849!2d110.37618701437648!3d-7.7860439794186735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5828f6fb7ef7%3A0xb710cc588f40770e!2sUniversitas+Kristen+Duta+Wacana!5e0!3m2!1sen!2sid!4v1458366310712" width="550" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div> <!-- /.col-md-6 -->
+                <div>
                 <div class="col-md-6 col-sm-6">
-                    
-                    <div class="row contact-form">
+                    <ul class="contact">
+                        <li >
+                            <p>
+                                <span class="home"></span><em>UNIVERSITAS KRISTEN DUTA WACANA</em>  <br>
+                                Jl. Dr. Wahidin Sudiro Husodo No. 5 – 25.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="phone">
+                                Telp: 0274 – 563929 
+                            </p>
+                        </li>
+                        <li>
+                            <p class="fax">
+                                Fax: 0274 – 513235
+                            </p>
+                        </li>
+                        <li>
+                            <p class="mail">
+                                Email: humas@staff.ukdw.ac.id <br>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <!-- <div class="row contact-form">
                     
                         <fieldset class="col-md-6 col-sm-6">
                             <input id="name" type="text" name="name" placeholder="Name">
@@ -303,7 +379,7 @@ http://www.templatemo.com/tm-401-sprint
                             <input type="submit" name="send" value="Send Message" id="submit" class="button">
                         </fieldset>
                      
-                    </div> <!-- /.contact-form -->
+                    </div> <!-- /.contact-form --> 
                     
                 </div> <!-- /.col-md-6 -->
             </div> <!-- /.row -->
@@ -315,20 +391,17 @@ http://www.templatemo.com/tm-401-sprint
             <div class="row">
                 <div class="col-md-8 col-sm-6">
                     <span>
-                        Copyright &copy; 2016 <a href="#">PPTPM Universitas Kristen Duta Wacana</a>
-                        
-                        
-                       
+                        Copyright &copy; 2016 <a href="#">PPTPM Universitas Kristen Duta Wacana</a>                       
                     </span>
 
             </div> <!-- /.col-md-6 -->
                 <div class="col-md-4 col-sm-6">
                     <ul class="social">
-                        <li><a href="#" class="fa fa-facebook"></a></li>
+                      <!--   <li><a href="#" class="fa fa-facebook"></a></li>
                         <li><a href="#" class="fa fa-twitter"></a></li>
                         <li><a href="#" class="fa fa-instagram"></a></li>
                         <li><a href="#" class="fa fa-linkedin"></a></li>
-                        <li><a href="#" class="fa fa-rss"></a></li>
+                        <li><a href="#" class="fa fa-rss"></a></li> -->
                     </ul>
                 </div> <!-- /.col-md-6 -->
             </div> <!-- /.row -->

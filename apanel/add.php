@@ -8,6 +8,12 @@
     session_start();
     $timeout = 900;
 
+    if (!(isset($_SESSION['user']) && $_SESSION['user'] != '')) {
+
+        header ("Location: index.php");
+
+    }
+
     if(isset($_SESSION['timeout'])) {
         $duration = time() - (int)$_SESSION['timeout'];
         if($duration > $timeout) {
@@ -146,8 +152,9 @@ http://www.templatemo.com/tm-401-sprint
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="#services">Tambah_Barang</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
+                                <li><a href="tmbh-barang.php" onclick="location.href='tmbh-barang.php';">Log_Peminjaman</a></li>
+                                <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
                                 
@@ -160,8 +167,9 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="responsive">
                             <div class="main-menu">
                                 <ul>
-                                <li><a href="#services">Tambah_Barang</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
+                                <li><a href="tmbh-barang.php" onclick="location.href='tmbh-barang.php';">Log_Peminjaman</a></li>
+                                <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>
                         </div>

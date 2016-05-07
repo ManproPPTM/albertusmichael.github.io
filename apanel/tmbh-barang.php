@@ -12,6 +12,13 @@
 <?php
     require "../connection.php";
     session_start();
+
+    if (!(isset($_SESSION['user']) && $_SESSION['user'] != '')) {
+
+        header ("Location: index.php");
+
+    }
+
     $timeout = 900;
 
     if(isset($_SESSION['timeout'])) {
@@ -116,9 +123,9 @@ http://www.templatemo.com/tm-401-sprint
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
+                                 <li><a href="add.php" onclick="location.href='add.php';">Daftar_Barang</a></li>
+                                 <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
                                 
@@ -128,19 +135,7 @@ http://www.templatemo.com/tm-401-sprint
                 </div> <!-- /.row -->
                 <div class="row">
 
-                    <div class="col-md-8 col-sm-6 col-xs-6">
-                        <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
-                        <div class="main-menu">
-                            <ul>
-                                <li><a href="#services">Daftar_Barang</a></li>
-                                <li><a href="#inventory">Log_Peminjaman</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
-                            </ul>
-                            <ul>
-                                
-                            </ul>
-                        </div> <!-- /.main-menu -->
-                    </div> <!-- /.col-md-8 -->
+
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div> <!-- /.site-header -->

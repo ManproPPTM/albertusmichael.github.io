@@ -8,6 +8,12 @@
     session_start();
     $timeout = 900;
 
+    if (!(isset($_SESSION['user']) && $_SESSION['user'] != '')) {
+
+        header ("Location: index.php");
+
+    }
+
     if(isset($_SESSION['timeout'])) {
         $duration = time() - (int)$_SESSION['timeout'];
         if($duration > $timeout) {
@@ -44,15 +50,16 @@ http://www.templatemo.com/tm-401-sprint
 
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
-
+<!-- 
     <style type="text/css">
         button#pinjam {width:6em}
         button#pinjam:hover span {display:none}
         button#pinjam:hover:before {content:"KEMBALI"}
+        #pinjam:hover {background-color:#008CBA;}
     </style>
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+ -->
+<!-- 
+ <script src="../js/jquery.min.js"></script>
 
      <script>
         $(document).ready(function(){
@@ -70,7 +77,7 @@ http://www.templatemo.com/tm-401-sprint
                        cache: false,
                         success: function()
                        {
-                            window.location.href = "http://localhost/PPTPMLatest/apanel/admpanel.php";
+                            window.location.href = "http://localhost/PPTPM/apanel/admpanel.php";
                        }
                  });        
             });
@@ -78,7 +85,7 @@ http://www.templatemo.com/tm-401-sprint
 
         });
     </script>
-
+ -->
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -95,7 +102,7 @@ http://www.templatemo.com/tm-401-sprint
                             <ul>
                                 <li><a href="#services">Daftar Barang</a></li>
                                 <li><a href="#inventory">Log Peminjaman</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
                             
@@ -110,7 +117,7 @@ http://www.templatemo.com/tm-401-sprint
                                 <ul>
                                 <li><a href="#services">Daftar Barang</a></li>
                                 <li><a href="#inventory">Log Peminjaman</a></li>
-                                <li><a href="logout.php"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                 <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -127,7 +134,7 @@ http://www.templatemo.com/tm-401-sprint
 
     <div id="services" class="content-section">
         <div class="container text-center">
-            <H1>Daftar Barang</H1>
+            <h2>Daftar Barang</h2>
             <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
                 <a href='add.php'>
                     <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
@@ -171,10 +178,10 @@ http://www.templatemo.com/tm-401-sprint
 
 
 <div id="inventory" class="content-section">
-        <div class="container text-center">
+        <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>Log Peminjaman</h2>
+                <div class="col-md-12">
+                    <CENTER><h2>Log Peminjaman</h2></CENTER>
                 </div>
             </div> 
             
@@ -199,15 +206,18 @@ http://www.templatemo.com/tm-401-sprint
             ?>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
-                    <td>Nomor Peminjaman</td>
-                    <td>Kode Barang</td>      
-                    <td>Tanggal Pinjam</td>
-                    <td>Tanggal Kembali</td>
-                    <td>Status</td>
+                    <td><center>Nomor Peminjaman</center></td>
+                    <td style="width: 30%;">Nama Barang</td>      
+                    <td><center>Tanggal Pinjam</center></td>
+                    <td><center>Tanggal Kembali</center></td>
+                    <td><center>Status</center></td>
+                    <td><center>Ubah Status</center></td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
-                $sqllog="SELECT kode_peminjaman, kode_barang, tgl_pinjam, tgl_kembali, status FROM log_peminjaman order by tgl_kembali asc LIMIT $posisi,$batas";
+                $sqllog="SELECT log_peminjaman.kode_peminjaman, log_peminjaman.kode_barang, log_peminjaman.tgl_pinjam, 
+                log_peminjaman.tgl_kembali, log_peminjaman.status, daftar_barang.nama_barang FROM log_peminjaman left join daftar_barang 
+                on log_peminjaman.kode_barang = daftar_barang.kode_barang order by tgl_kembali asc LIMIT $posisi,$batas";
                 $reslog=$conn->query($sqllog);
                 $no = $posisi+1;
                 if(mysqli_num_rows($reslog)>0)
@@ -218,8 +228,8 @@ http://www.templatemo.com/tm-401-sprint
                         
                         echo
                             '<tr>
-                                <td>'.$rowlog[0].'</td>      
-                                <td>'.$rowlog[1].'</td>';
+                                <td><center>'.$rowlog[0].'</center></td>      
+                                <td>'.$rowlog[5].'</td>';
                         
                         for($j=2;$j<=3;$j++)
                         {
@@ -240,13 +250,19 @@ http://www.templatemo.com/tm-401-sprint
                                     case "12": $date= $date."DES "; break;
                             }
                             $date=$date.substr($rowlog[$j],0,4);
-                            echo    '<td>'.$date.'</td>';
+                            echo    '<td><center>'.$date.'</center></td>';
                         }
                         
                         switch($rowlog[4])
                         {
-                            case "PINJAM": echo '<td style="color: red"><button id="pinjam" class="btn btn-warning btn-xs"><span>PINJAM</span></button></td>'; break;
-                            case "KEMBALI": echo '<td style="color: green">KEMBALI</td>';
+                            case "PINJAM": 
+                                echo '<td style="color: red"><center>PINJAM</center></td>';
+                                echo '<td><center><a href="update.php?idlog='.$rowlog[0].'"><button style="background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Kembali</button></a></center></td>';
+                                break;
+                            case "KEMBALI": 
+                                echo '<td style="color: green"><center>KEMBALI</center></td>';
+                                echo '<td><center><a><button style="background-color: #7CDF80; color: white; border: 0; height: 30px; width: 80px" disabled>Kembali</button></a></center></td>';
+                                break;
                         }
                         echo '</tr>';
                     }
@@ -256,6 +272,7 @@ http://www.templatemo.com/tm-401-sprint
                 ?>
 
             </table>
+            <center>
             <?php
 
                     // Hitung total data dan halaman serta link 1,2,3 
@@ -273,6 +290,7 @@ http://www.templatemo.com/tm-401-sprint
                         echo " <b>$i</b> | "; 
                     }
             ?>
+            </center>
         </div> <!-- /.container -->
     </div> <!-- /#products -->
 
