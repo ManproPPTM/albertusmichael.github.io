@@ -210,14 +210,20 @@ http://www.templatemo.com/tm-401-sprint
                         $reslog=$reslog->fetch_assoc();
                         $sisa=$rowstok[2]-$reslog["num"];
                         
-                        echo
-                                    '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';
+                        if ($rowstok[2]==0)
+                        {
+                            echo    '<span><em class="price" style="color: #FF0000">Barang tidak tersedia.</em></span><br>';
+                        }
+                        else
+                        {
+                            echo    '<span>Jumlah Total <em class="price">'.$rowstok[2].'</em> Tersedia <em class="price">'.$sisa.'</em></span><br>';
+                        }
                         
                         if($sisa>0)
                         {
                             echo    '<span>Tersedia Tanggal : <em class="price">SAAT INI TERSEDIA</em></em></span>';
                         }
-                        else
+                        else if($rowstok[2]!=0)
                         {
                             $sqllog="SELECT MIN(tgl_kembali) AS tgl FROM log_peminjaman WHERE kode_barang='".$rowstok[0]."' AND status='PINJAM'";
                             $reslog=$conn->query($sqllog);

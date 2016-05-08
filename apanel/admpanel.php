@@ -230,10 +230,12 @@ http://www.templatemo.com/tm-401-sprint
                     for($i=0;$i<mysqli_num_rows($reslog);$i++)
                     {
                         $rowlog=mysqli_fetch_array($reslog);
+                        $duedate = substr($rowlog[3],0,4).substr($rowlog[3],5,2).substr($rowlog[3],8,2);
                         
+                        if($duedate<=date('Ymd') && $rowlog[4]=='PINJAM') echo '<tr style="background-color: #FFCCCC">';
+                        else echo '<tr>';
                         echo
-                            '<tr>
-                                <td><center>'.$rowlog[0].'</center></td>      
+                                '<td><center>'.$rowlog[0].'</center></td>      
                                 <td>'.$rowlog[5].'</td>';
                         
                         for($j=2;$j<=3;$j++)

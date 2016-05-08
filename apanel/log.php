@@ -160,7 +160,7 @@ http://www.templatemo.com/tm-401-sprint
                 ?>       
                 </select><br><br>                 
                 Tanggal Pinjam : <br>
-                <input type="date" name="tglpinjam" style="height: 33px" value="<?php echo date('Y-m-d'); ?>"><br><br>
+                <input type="date" name="tglpinjam" style="height: 33px" value="<?php echo date('Y-m-d'); ?>" readonly><br><br>
                 Tanggal Kembali : <br>
                 <input type="date" style="height: 33px" name="tglkembali"><br><br>
               <!--   Masukkan Gambar : <br> -->
