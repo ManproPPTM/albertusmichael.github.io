@@ -190,7 +190,7 @@ http://www.templatemo.com/tm-401-sprint
                 Nama Barang : <br>
                 <input type="text" name="namabrg"><br>
                 Stok Barang saat ini : <br>
-                <input type="text" name="stkbrg"><br>
+                <input type="number" name="stkbrg"><br>
                 Masukkan Gambar<br>
                 (Resized and trimmed to 400x400px) : <br>
                 <input type="file" name="gbrbrg" style="background-color: transparent; border: 0px; width: 250px; float: left">

@@ -219,12 +219,13 @@ http://www.templatemo.com/tm-401-sprint
                         }
                         else
                         {
-                            $sqllog="SELECT MIN(tgl_kembali) FROM log_peminjaman WHERE kode_barang=".$rowstok[0]." AND status='PINJAM'";
+                            $sqllog="SELECT MIN(tgl_kembali) AS tgl FROM log_peminjaman WHERE kode_barang='".$rowstok[0]."' AND status='PINJAM'";
                             $reslog=$conn->query($sqllog);
-                            $rowlog=mysqli_fetch_array($reslog);
+                            echo $conn->error;
+                            $rowlog=$reslog->fetch_assoc();
                             
-                            $date=substr($rowlog[0],8,2)." ";
-                            switch(substr($rowlog[0],5,2))
+                            $date=substr($rowlog['tgl'],8,2)." ";
+                            switch(substr($rowlog['tgl'],5,2))
                             {
                                     case "01": $date= $date."JAN "; break;
                                     case "02": $date= $date."FEB "; break;
@@ -239,9 +240,9 @@ http://www.templatemo.com/tm-401-sprint
                                     case "11": $date= $date."NOV "; break;
                                     case "12": $date= $date."DES "; break;
                             }
-                            $date=$date.substr($rowlog[0],0,4);
+                            $date=$date.substr($rowlog['tgl'],0,4);
                             
-                            echo    '<span>Tersedia Tanggal : <em class="price">'.$date.'</em></em></span>';
+                            echo    '<span>Tersedia Tanggal : <em class="price" style="color: #FF0000">'.$date.'</em></em></span>';
                         }
                         
                         echo
