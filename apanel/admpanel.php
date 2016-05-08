@@ -23,6 +23,11 @@
     }
      
     $_SESSION['timeout'] = time();
+    if (isset($_GET["success"]))
+    {
+        echo "<script>alert('Berhasil upload!');</script>";
+        echo "<script>window.location='admpanel.php';</script>";
+    }
 ?>
 <head>
     <meta charset="utf-8">
@@ -186,7 +191,7 @@ http://www.templatemo.com/tm-401-sprint
             </div> 
             
             <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
-                <a href='tmbh-barang.php'>
+                <a href='log.php'>
                     <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
                 </a>
             </div>

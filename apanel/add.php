@@ -87,7 +87,8 @@
                 
                 //insert database
                 $q = "INSERT INTO daftar_barang(kode_barang, nama_barang, stok, imgpath) VALUES('".$fname."','".$_POST['namabrg']."','".$_POST['stkbrg']."','".$fname.".".$imageFileType."')";
-                $conn->query($q)===true;
+                $conn->query($q);
+                header('location:admpanel.php?success=1');
             } else {
                 $uploadOk = 0;
             }
@@ -153,7 +154,7 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="main-menu">
                             <ul>
                                 <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
-                                <li><a href="tmbh-barang.php" onclick="location.href='tmbh-barang.php';">Log_Peminjaman</a></li>
+                                <li><a href="log.php" onclick="location.href='log.php';">Log_Peminjaman</a></li>
                                 <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                             </ul>
                             <ul>
@@ -168,7 +169,7 @@ http://www.templatemo.com/tm-401-sprint
                             <div class="main-menu">
                                 <ul>
                                 <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
-                                <li><a href="tmbh-barang.php" onclick="location.href='tmbh-barang.php';">Log_Peminjaman</a></li>
+                                <li><a href="log.php" onclick="location.href='log.php';">Log_Peminjaman</a></li>
                                 <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
                                 </ul>
                             </div>

@@ -8,9 +8,9 @@ $sql="SELECT username,password  FROM pengguna
        WHERE username = '$_POST[id]' 
        AND password = '$pass'"; 
 $qry=$conn->query($sql);
-$data=mysqli_fetch_array($qry); 
-$hasil=mysqli_num_rows($qry); 
-if ($hasil > 0 ) 
+$data=$qry->fetch_array(); 
+$hasil=$qry->num_rows; 
+if ($hasil == 1 ) 
 { 
 	$_SESSION['user']=$data['username']; 
 	header('location:admpanel.php'); 

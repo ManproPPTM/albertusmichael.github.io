@@ -33,48 +33,37 @@
 
     //generate kode pinjam
     $qry = "SELECT COUNT(*) AS num FROM log_peminjaman";
-    $digitakhir = $conn->query($qry);
-    $digitakhir = $digitakhir->fetch_assoc();
-    if ($digitakhir["num"] < 10)
-    {
-        $digitakhir= "P00".($digitakhir["num"]+1);
-    }
-    elseif ($digitakhir["num"] >= 10) 
-    {
-       $digitakhir= "P0".($digitakhir["num"]+1);
-    }
-    else
-    {
-        $digitakhir= "P".($digitakhir["num"]+1);
-    }
+    $kodepinjam = $conn->query($qry);
+    $kodepinjam = $kodepinjam->fetch_assoc();
+    $kodepinjam = $kodepinjam["num"] + 1;
+    $kodepinjam = "R".$kodepinjam;
 
-if(isset($_POST["submit"]))
-{
-    $brg = $_POST['barang'];
-    $pinjam = $_POST['tglpinjam'];
-    $kembali= $_POST['tglkembali'];
-    $status = $_POST['status'];
-
-    $cekstok = mysqli_query($conn, "SELECT stok from daftar_barang where kode_barang='P001'") or die(mysqli_error());
-
-    $row = $cekstok->fetch_assoc();
-
-    $dipinjam = "SELECT COUNT(*) AS num from log_peminjaman where kode_barang='$brg' && status='PINJAM'";
-    $lihatstok = $conn->query($dipinjam);
-    $lihatstok = $lihatstok->fetch_assoc();
-   
-    if ($row['stok'] < $lihatstok["num"] ) 
+    if(isset($_POST["submit"]))
     {
-        echo "<script> alert('Barang tidak tersedia'); </script>";
-        $uploadOk = 0;
+        $brg = $_POST['barang'];
+        $pinjam = $_POST['tglpinjam'];
+        $kembali= $_POST['tglkembali'];
+
+        $cekstok = $conn->query("SELECT stok from daftar_barang where kode_barang='".$brg."'");
+
+        $row = $cekstok->fetch_assoc();
+
+        $dipinjam = "SELECT COUNT(*) AS num from log_peminjaman where kode_barang='$brg' && status='PINJAM'";
+        $lihatlog = $conn->query($dipinjam);
+        $lihatlog = $lihatlog->fetch_assoc();
+
+        if ($row['stok'] - $lihatlog["num"] == 0 )
+        {
+            echo "<script> alert('Barang tidak tersedia'); </script>";
+            $uploadOk = 0;
+        }
+        else
+        {
+            $sql = "INSERT INTO log_peminjaman VALUES('$kodepinjam','$brg','$pinjam','$kembali','PINJAM')";
+            $conn->query($sql);
+            $uploadOk = 1;
+        }
     }
-    else
-    {
-        $sql = "INSERT INTO log_peminjaman VALUES('$digitakhir','$brg','$pinjam','$kembali','$status')";
-        $conn->query($sql);
-        $uploadOk = 1;
-    }
-}
     
 ?>
 <!--
@@ -109,7 +98,7 @@ http://www.templatemo.com/tm-401-sprint
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
 </head>
-<body style="background: url(foto.JPG)">
+<body>
     <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
@@ -134,9 +123,18 @@ http://www.templatemo.com/tm-401-sprint
                     </div> <!-- /.col-md-8 -->
                 </div> <!-- /.row -->
                 <div class="row">
-
-
-                </div> <!-- /.row -->
+                    <div class="col-md-12">
+                        <div class="responsive">
+                            <div class="main-menu">
+                                <ul>
+                                <li><a href="admpanel.php" onclick="location.href='admpanel.php';">Home</a></li>
+                                <li><a href="add.php" onclick="location.href='add.php';">Daftar_Barang</a></li>
+                                <li><a href="logout.php" onclick="location.href='logout.php';"><?php echo $_SESSION['user'];?>, Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div> <!-- /.container -->
         </div> <!-- /.site-header -->
     </div> <!-- /#front -->
@@ -144,36 +142,27 @@ http://www.templatemo.com/tm-401-sprint
     <!-- /#content -->
     <div class="container text-center" >
 
-        <div class="center-coloumn">
-            <h2 style="color: white">Data Penyewa</h2><br>
-            <form action="tmbh-barang.php" method="post">
+        <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
+            <h2 style="color: white">Tambah Daftar Peminjaman</h2><br>
+            <form action="log.php" method="post">
               <!--   Kode Pinjam: <br> -->
                 <input type="hidden" name="kodepinjam" value="<?php echo $digitakhir; ?>">
                 Barang : <br>
                <select id="barang" name="barang" width="430" style="width: 430px">
                 <option value="">--Pilih Barang--</option>         
                 <?php
-                $sqlQuery ="SELECT * FROM daftar_barang";
-                $qry=$conn->query($sqlQuery);
-                while ($data=mysqli_fetch_array($qry)) 
-                {   
-                ?>
-                        
-                                <option value="<?php echo $data['kode_barang'] ?>"><?php echo $data['nama_barang']?></option>
-                                                    
-                <?PHP
-                }
+                    $sqlQuery ="SELECT * FROM daftar_barang";
+                    $qry=$conn->query($sqlQuery);
+                    while ($data=mysqli_fetch_array($qry)) 
+                    {
+                        echo '<option value="'.$data['kode_barang'].'">'.$data['nama_barang'].'</option>';
+                    }
                 ?>       
                 </select><br><br>                 
                 Tanggal Pinjam : <br>
                 <input type="date" name="tglpinjam" style="height: 33px"><br><br>
                 Tanggal Kembali : <br>
                 <input type="date" style="height: 33px" name="tglkembali"><br><br>
-                Status : <br>
-                <select name="status" id="status">
-                    <option value="PINJAM">PINJAM</option>
-                    <option value="KEMBALI">KEMBALI</option>
-                </select>
               <!--   Masukkan Gambar : <br> -->
                 <!-- <button type="submit" onclick="alert('Barang Tersimpan !')" style="margin-left: 60%; margin-top: 20px">Simpan</button> -->
                 <div class="row">
