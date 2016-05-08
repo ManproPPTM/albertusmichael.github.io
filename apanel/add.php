@@ -184,11 +184,11 @@ http://www.templatemo.com/tm-401-sprint
     <div class="container text-center">
         <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
             <form action="add.php" method="post" enctype="multipart/form-data">
-                <h2 style="color: white">Form Tambah Barang</h2><br>
+                <h2 style="color: white">Tambah Barang</h2><br>
                <!--  Kode Barang : <br> -->
                 <input type="text" name="kodebrg" value="<?php echo $fname; ?>" hidden><br>
                 Nama Barang : <br>
-                <input type="text" name="namabrg"><br>
+                <input type="text" name="namabrg" max="100"><br>
                 Stok Barang saat ini : <br>
                 <input type="number" name="stkbrg"><br>
                 Masukkan Gambar<br>

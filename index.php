@@ -32,6 +32,13 @@ http://www.templatemo.com/tm-401-sprint
 
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
+    <style type="text/css">
+        .pagination li.active > a, .pagination li.active > span{
+        background-color:#4caf50;
+        border-color:#4caf50;
+        pointer-events:none;
+    }
+    </style>
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -177,11 +184,22 @@ http://www.templatemo.com/tm-401-sprint
             <div class="row">
                 <?php
                 //<!--PHP HERE!-->
-                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
+                // Tentukan batas,cek halaman & posisi data
+                $batas   = 4;
+                $halaman = @$_GET['halaman'];
+                if(empty($halaman)){
+                    $posisi  = 0;
+                    $halaman = 1;
+                }
+                else{ 
+                  $posisi  = ($halaman-1) * $batas; 
+                }
+                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang LIMIT $posisi,$batas";
                 $resstok=$conn->query($sqlstok);
                 
                 if(mysqli_num_rows($resstok)>0)
                 {
+                    $no = $posisi+1;
                     for($i=0;$i<mysqli_num_rows($resstok);$i++)
                     {
                         $rowstok=mysqli_fetch_array($resstok);
@@ -250,16 +268,37 @@ http://www.templatemo.com/tm-401-sprint
                             
                             echo    '<span>Tersedia Tanggal : <em class="price" style="color: #FF0000">'.$date.'</em></em></span>';
                         }
-                        
                         echo
                                 '</div> <!-- /.product-item -->
                             </div> <!-- /.col-md-3 -->';
                     }
+                     $no++;
                 }
                 //<!--PHP STOP HERE!-->
-                ?>
+                ?>  
             </div> <!-- /.row -->
         </div> <!-- /.container -->
+                <center>
+                <?php
+                    // Hitung total data dan halaman serta link 1,2,3 
+                            $query2     = mysqli_query($conn, "select * from daftar_barang");
+                            $jmldata    = mysqli_num_rows($query2);
+                            $jmlhalaman = ceil($jmldata/$batas);
+
+                            echo "<br> Halaman : ";
+
+                            for($int=1;$int<=$jmlhalaman;$int++)
+                            if ($int != $halaman){
+                                echo " <a href=\"index.php?halaman=$int\">$int</a> | ";
+                            }
+                            else{ 
+                                echo " <b>$int</b> | "; 
+                            }
+
+                ?>
+                </center>
+
+            </ul>
     </div> <!-- /#products -->
 
      <!-- <div id="about" class="content-section">
@@ -281,7 +320,7 @@ http://www.templatemo.com/tm-401-sprint
                 </div> <!-- /.col-md-12 -->
             </div> <!-- /.row -->
         </div> <!-- /.container -->
-    </div> <!-- /#products --> -->
+    </div> <!-- /#products -->
 
     <div id="product-promotion" class="content-section">
         <div class="container">

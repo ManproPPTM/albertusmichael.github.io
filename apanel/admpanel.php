@@ -45,7 +45,7 @@ http://www.templatemo.com/tm-401-sprint
     <meta name="viewport" content="width=device-width">
 
   
-<!--     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet"> -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/normalize.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -142,22 +142,36 @@ http://www.templatemo.com/tm-401-sprint
             <h2>Daftar Barang</h2>
             <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
                 <a href='add.php'>
-                    <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
+                    <!-- <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button> -->
+                    <button type="button" style="width: 80px; position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%);" onclick="location.href='add.php';" class='btn btn-success' width="100px">Add</button>
                 </a>
             </div>
+             <?php
+            // Tentukan batas,cek halaman & posisi data
+            $bts   = 6;
+            $hal = @$_GET['hal'];
+            if(empty($hal)){
+                $pos  = 0;
+                $hal = 1;
+            }
+            else{ 
+              $pos  = ($hal-1) * $bts; 
+            }
+
+            ?>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
-                    <td>No</td>
-                    <td>Kode Barang</td>      
-                    <td>Nama Barang</td>
-                    <td>Stok</td>
-                    <td>Tambah/Kurang Stok</td>
+                    <td><b>No</b></td>
+                    <td><b>Kode Barang</b></td>      
+                    <td><b>Nama Barang</b></td>
+                    <td><b>Stok</b></td>
+                    <td><b>Tambah/Kurang Stok</b></td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
-                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang";
+                $sqlstok="SELECT kode_barang, nama_barang, stok, imgpath FROM daftar_barang LIMIT $pos,$bts";
                 $resstok=$conn->query($sqlstok);
-                
+                $num = $pos+1;
                 if(mysqli_num_rows($resstok)>0)
                 {
                     for($i=0;$i<mysqli_num_rows($resstok);$i++)
@@ -166,17 +180,35 @@ http://www.templatemo.com/tm-401-sprint
                         
                         echo
                             '<tr>
-                                <td>'.($i+1).'</td>
+                                <td>'.($num).'</td>
                                 <td>'.$rowstok[0].'</td>      
                                 <td>'.$rowstok[1].'</td>
                                 <td>'.$rowstok[2].'</td>
                                 <td><a href="update.php?id='.$rowstok[0].'&stat=plus"><img src="../images/plus.png" alt=""></a><a href="update.php?id='.$rowstok[0].'&stat=minus"><img src="../images/minus.png" alt=""></a></td>
                             </tr>';
-                    }
+                            $num++;
+                    } 
                 }
                 //<!--PHP Code Here-->
                 ?>
             </table>
+            <?php
+
+                    // Hitung total data dan halaman serta link 1,2,3 
+                    $query1     = mysqli_query($conn, "select * from daftar_barang");
+                    $jumdata    = mysqli_num_rows($query1);
+                    $jumhalaman = ceil($jumdata/$bts);
+
+                    echo "<br> Halaman : ";
+
+                    for($in=1;$in<=$jumhalaman;$in++)
+                    if ($in != $hal){
+                        echo " <a href=\"admpanel.php?hal=$in\">$in</a> | ";
+                    }
+                    else{ 
+                        echo " <b>$in</b> | "; 
+                    }
+            ?>
         </div> <!-- /.container -->
     </div> <!-- /#services -->
 
@@ -192,8 +224,10 @@ http://www.templatemo.com/tm-401-sprint
             
             <div style="height: 40px; position: relative; background-color: #F5F5F5; padding: 0;">
                 <a href='log.php'>
-                    <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button>
+                   <!--  <button style="position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%); background-color: #4CAF50; color: white; border: 0; height: 30px; width: 80px">Add</button> -->
+                    <button type="button" style="width: 80px; position: absolute; right: 50px; top: 50%; transform: translate(50%,-50%);" onclick="location.href='log.php';" class='btn btn-success' width="100px">Add</button>
                 </a>
+
             </div>
 
             <?php
@@ -211,12 +245,12 @@ http://www.templatemo.com/tm-401-sprint
             ?>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
-                    <td><center>Nomor Peminjaman</center></td>
-                    <td style="width: 30%;">Nama Barang</td>      
-                    <td><center>Tanggal Pinjam</center></td>
-                    <td><center>Tanggal Kembali</center></td>
-                    <td><center>Status</center></td>
-                    <td><center>Ubah Status</center></td>
+                    <td><center><b>Nomor Peminjaman</b></center></td>
+                    <td style="width: 30%;"><b>Nama Barang</b></td>      
+                    <td><center><b>Tanggal Pinjam</b></center></td>
+                    <td><center><b>Tanggal Kembali</b></center></td>
+                    <td><center><b>Status</b></center></td>
+                    <td><center><b>Ubah Status</b></center></td>
                 </tr>
                 <?php
                 //<!--PHP Code Here-->

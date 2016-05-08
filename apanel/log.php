@@ -55,13 +55,20 @@
         if ($row['stok'] - $lihatlog["num"] == 0 )
         {
             echo "<script> alert('Barang tidak tersedia'); </script>";
-            $uploadOk = 0;
         }
         else
         {
-            $sql = "INSERT INTO log_peminjaman VALUES('$kodepinjam','$brg','$pinjam','$kembali','PINJAM')";
-            $conn->query($sql);
-            $uploadOk = 1;
+            if($kembali < $pinjam)
+            {
+                echo "<script> alert('Tanggal kembali tidak valid..'); </script>";
+            }
+            else
+            {
+                $sql = "INSERT INTO log_peminjaman VALUES('$kodepinjam','$brg','$pinjam','$kembali','PINJAM')";
+                $conn->query($sql);
+                echo "<script> alert('Data berhasil disimpan'); </script>";
+                echo "<script> window.location='admpanel.php'  </script>";
+            }
         }
     }
     
@@ -166,12 +173,7 @@ http://www.templatemo.com/tm-401-sprint
               <!--   Masukkan Gambar : <br> -->
                 <!-- <button type="submit" onclick="alert('Barang Tersimpan !')" style="margin-left: 60%; margin-top: 20px">Simpan</button> -->
                 <div class="row">
-                    <?php
-                    if(isset($uploadOk))
-                    {
-                        if($uploadOk==1) echo '<span style="color: #00FF00"><p style="position: fixed; bottom: 30; width:30%; text-align: center">Data berhasil disimpan!</p></span>';
-                    }
-                    ?>
+                   
                       <button type="submit" name="submit"  class='btn btn-success' style="margin-left: 65%;">Simpan</button>
                       <button type="button" onclick="location.href='admpanel.php';" class='btn btn-default'><font color="black">Kembali</font></button>
                 </div>
