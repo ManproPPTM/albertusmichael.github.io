@@ -142,7 +142,7 @@ http://www.templatemo.com/tm-401-sprint
     <!-- /#content -->
     <div class="container text-center" >
 
-        <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
+        <div class="center-coloumn" style="background-image: url(foto.JPG); border: 0px; position: relative">
             <h2 style="color: white">Tambah Daftar Peminjaman</h2><br>
             <form action="log.php" method="post">
               <!--   Kode Pinjam: <br> -->
