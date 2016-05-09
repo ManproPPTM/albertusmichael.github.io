@@ -298,31 +298,9 @@ http://www.templatemo.com/tm-401-sprint
                 ?>
                 </center>
 
-            </ul>
-    </div> <!-- /#products -->
+    </div>
 
-     <!-- <div id="about" class="content-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h1 class="section-title">About</h1>
-                    <p>
-                        PPTPM atau Pusat Pengembangan Teknologi Pengajaran dan Multimedia dibentuk 1 April 2001. PPTPM adalah salah 
-                        satu Unit Pelaksana Teknis dari Universitas Kristen Duta Wacana. 
-                        Salah satu tugas pokok PPTPM adalah menyediakan dukungan teknis dalam 
-                        perancangan dan pengembangan bahan ajar yang menggunakan media instruksional dan teknologi, selain itu juga
-                        memberikan dukungan aplikasi teknologi dalam proses belajar mengajar.
-                    </p>
-                    <p> Prosedur Peminjaman :</p>
-                    <p>1. Mengunjungi website PPTPM yang tersedia</p>
-                    <p>2. Memilih barang yang hendak di pinjam serta cek ketersediaan barang tersebut</p>
-                    <p>3. Lalu datang ke kantor PPTPM</p>
-                </div> <!-- /.col-md-12 -->
-            </div> <!-- /.row -->
-        </div> <!-- /.container -->
-    </div> <!-- /#products -->
-
-    <div id="product-promotion" class="content-section">
+    <div id="about" class="content-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -359,8 +337,6 @@ http://www.templatemo.com/tm-401-sprint
     </div> <!-- /#product-promotion -->
 
 <!-- batass -->
-
-   
 
     <div id="contact" class="content-section">
         <div class="container">
