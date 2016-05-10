@@ -155,7 +155,7 @@ http://www.templatemo.com/tm-401-sprint
               <!--   Kode Pinjam: <br> -->
                 <input type="hidden" name="kodepinjam" value="<?php echo $digitakhir; ?>">
                 Barang : <br>
-               <select id="barang" name="barang" width="430" style="width: 430px">
+               <select id="barang" name="barang" width="430" style="width: 430px" required>>
                 <option value="">--Pilih Barang--</option>         
                 <?php
                     $sqlQuery ="SELECT * FROM daftar_barang";
@@ -169,7 +169,7 @@ http://www.templatemo.com/tm-401-sprint
                 Tanggal Pinjam : <br>
                 <input type="date" name="tglpinjam" style="height: 33px" value="<?php echo date('Y-m-d'); ?>" readonly><br><br>
                 Tanggal Kembali : <br>
-                <input type="date" style="height: 33px" name="tglkembali"><br><br>
+                <input type="date" style="height: 33px" name="tglkembali" required><br><br>
               <!--   Masukkan Gambar : <br> -->
                 <!-- <button type="submit" onclick="alert('Barang Tersimpan !')" style="margin-left: 60%; margin-top: 20px">Simpan</button> -->
                 <div class="row">

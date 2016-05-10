@@ -161,9 +161,9 @@ http://www.templatemo.com/tm-401-sprint
             ?>
             <table border="0" style="width:100%">
                 <tr style="background-color: #4CAF50; color: white; height:40px">
-                    <td><b>No</b></td>
+                     <td style="width: 5%;"><b>No</b></td>
                     <td><b>Kode Barang</b></td>      
-                    <td><b>Nama Barang</b></td>
+                    <td style="text-align:left; width: 30%;"><b>Nama Barang</b></td>
                     <td><b>Stok</b></td>
                     <td><b>Tambah/Kurang Stok</b></td>
                 </tr>
@@ -182,7 +182,7 @@ http://www.templatemo.com/tm-401-sprint
                             '<tr>
                                 <td>'.($num).'</td>
                                 <td>'.$rowstok[0].'</td>      
-                                <td>'.$rowstok[1].'</td>
+                                <td style="text-align:left">'.$rowstok[1].'</td>
                                 <td>'.$rowstok[2].'</td>
                                 <td><a href="update.php?id='.$rowstok[0].'&stat=plus"><img src="../images/plus.png" alt=""></a><a href="update.php?id='.$rowstok[0].'&stat=minus"><img src="../images/minus.png" alt=""></a></td>
                             </tr>';

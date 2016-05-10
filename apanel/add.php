@@ -187,10 +187,10 @@ http://www.templatemo.com/tm-401-sprint
                 <h2 style="color: white">Tambah Barang</h2><br>
                <!--  Kode Barang : <br> -->
                 <input type="text" name="kodebrg" value="<?php echo $fname; ?>" hidden><br>
-                Nama Barang : <br>
-                <input type="text" name="namabrg" max="100"><br>
+               Nama Barang : <br>
+                <input type="text" name="namabrg" max="100" placeholder="Nama Barang" required><br>
                 Stok Barang saat ini : <br>
-                <input type="number" name="stkbrg"><br>
+                <input type="number" name="stkbrg" placeholder="Jumlah stok" required><br>
                 Masukkan Gambar<br>
                 (Resized and trimmed to 400x400px) : <br>
                 <input type="file" name="gbrbrg" style="background-color: transparent; border: 0px; width: 250px; float: left">

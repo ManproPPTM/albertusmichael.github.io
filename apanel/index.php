@@ -3,22 +3,7 @@
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<?php
-    session_start();
-    $timeout = 900;
 
-    if(isset($_SESSION['timeout'])) {
-        $duration = time() - (int)$_SESSION['timeout'];
-        if($duration > $timeout) {
-            session_destroy();
-            header("location:index.php");
-        }
-        if(isset($_SESSION['user']))
-        {
-            header("location:admpanel.php");
-        }
-    }
-?>
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
@@ -60,7 +45,7 @@ http://www.templatemo.com/tm-401-sprint
                         <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
                         <div class="main-menu">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.php" onclick="location.href='../index.php';">Home</a></li>
                                 
                                
                             </ul>
@@ -72,7 +57,7 @@ http://www.templatemo.com/tm-401-sprint
                         <div class="responsive">
                             <div class="main-menu">
                                 <ul>
-                                    <li><a href="../index.html">Home</a></li>
+                                    <li><a href="index.php" onclick="location.href='../index.php';">Home</a></li>
                                      
                                 </ul>
                             </div>
@@ -91,7 +76,6 @@ http://www.templatemo.com/tm-401-sprint
             <br class="enter" /><button id="bmasuk" type="submit">SIGN IN</button>
         </form>
     </div>
-
    
     <script src="../js/vendor/jquery-1.10.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
