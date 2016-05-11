@@ -182,7 +182,7 @@ http://www.templatemo.com/tm-401-sprint
 
     <!-- /#content -->
     <div class="container text-center">
-        <div class="center-coloumn" style="background: url(foto.JPG); border: 0px; position: relative">
+        <div class="center-coloumn" style="background-color: #484848; border: 0px; position: relative">
             <form action="add.php" method="post" enctype="multipart/form-data">
                 <h2 style="color: white">Tambah Barang</h2><br>
                <!--  Kode Barang : <br> -->

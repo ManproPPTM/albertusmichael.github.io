@@ -31,7 +31,7 @@ http://www.templatemo.com/tm-401-sprint
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
 
 </head>
-<body style="background: url(foto.JPG)">
+<body style="background-color: #484848">
     <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
