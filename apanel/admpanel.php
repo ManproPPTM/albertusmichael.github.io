@@ -254,9 +254,11 @@ http://www.templatemo.com/tm-401-sprint
                 </tr>
                 <?php
                 //<!--PHP Code Here-->
-                $sqllog="SELECT log_peminjaman.kode_peminjaman, log_peminjaman.kode_barang, log_peminjaman.tgl_pinjam, 
-                log_peminjaman.tgl_kembali, log_peminjaman.status, daftar_barang.nama_barang FROM log_peminjaman left join daftar_barang 
-                on log_peminjaman.kode_barang = daftar_barang.kode_barang order by tgl_kembali asc LIMIT $posisi,$batas";
+                $tglskrg = date('Y-m-d');
+                $sqllog="SELECT log_peminjaman.kode_peminjaman, log_peminjaman.kode_barang, log_peminjaman.tgl_pinjam, log_peminjaman.tgl_kembali, 
+                log_peminjaman.status, daftar_barang.nama_barang FROM log_peminjaman left join daftar_barang on 
+                log_peminjaman.kode_barang = daftar_barang.kode_barang ORDER BY CASE WHEN status = 'KEMBALI' and tgl_kembali = '$tglskrg' 
+                THEN null WHEN status = 'KEMBALI' and tgl_kembali < '$tglskrg' THEN '3' ELSE tgl_kembali END ASC LIMIT $posisi,$batas";
                 $reslog=$conn->query($sqllog);
                 $no = $posisi+1;
                 if(mysqli_num_rows($reslog)>0)
