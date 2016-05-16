@@ -3,7 +3,22 @@
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<?php
+    session_start();
+    $timeout = 900;
 
+    if(isset($_SESSION['timeout'])) {
+        $duration = time() - (int)$_SESSION['timeout'];
+        if($duration > $timeout) {
+            session_destroy();
+            header("location:index.php");
+        }
+        if(isset($_SESSION['user']))
+        {
+            header("location:admpanel.php");
+        }
+    }
+?>
 <head>
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
